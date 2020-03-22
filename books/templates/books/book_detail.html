@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Book Detail {% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<div class="col-md-2 px-0">
+    <img class="img-fluid" src="{{ book_object.cover.url }}" alt="{{ book_object.title }}">
+</div>
+<div>
+    <h3>{{ book_object.title }}</h3>
+    <p> Author : {{ book_object.author }} |
+        Price : Rs {{ book_object.price }}</p>
+</div>
+
+<h3> Reviews </h3>
+<div>
+    <ul>
+        {% for review in book_object.reviews.all %}
+        <li>{{ review.author }}<br> {{ review.review_body }} </li>
+        <hr>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock content %}
+
+</body>
+</html>

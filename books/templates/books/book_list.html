@@ -1,0 +1,23 @@
+<!--books/book_list.html-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Book List {% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<h1> Books</h1><hr>
+    {% for book in book_list %}
+        <div>
+            <h3>
+                <a href="{{ book.get_absolute_url }}">{{ book.title|title }}</a>
+            </h3>
+        </div>
+
+    {% endfor %}
+
+{% endblock content %}
+
+</body>
+</html>

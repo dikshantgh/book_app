@@ -1,0 +1,21 @@
+<!--books/search_result.html-->
+{% extends '_base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Search {% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+<h4>Search Results</h4>
+Found {{ book_list|length }} book{{book_list|pluralize}}.
+<hr>
+{% for book in book_list %}
+    <div>
+        <h4><a href="{{ book.get_absolute_url }}"> {{ book.title }}</a> </h4>
+        <p>Author: {{ book.author }} | Price: Rs {{ book.price }} </p>
+    </div>
+{% endfor %}
+{% endblock content %}
+</body>
+</html>

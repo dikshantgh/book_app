@@ -1,0 +1,35 @@
+<!--pages/home.html-->
+{% extends '_base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title  %} Homepage {% endblock title %}</title>
+</head>
+<body>
+    {% block content %}
+
+    <form class="form-inline mt-2 mt-md-0" action="{% url 'books:search_results' %}"method="get">
+        <input name="q" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </form>
+
+    <div class="container">
+        <h1> Homepage</h1>
+        <div class="col-md-3 px-0">
+            <img class="img-fluid" src="{% static 'images/dikshant_photo.jpg' %} ">
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <!--    https://docs.djangoproject.com/en/3.0/ref/contrib/auth/#fields-->
+        <p>Hi {{ user.username }}, Welcome. |
+        <a href="{% url 'account_logout' %}">Logout</a>
+        </p>
+
+    {% else %}
+        <p> You are not logged in!! | Members
+        <a href="{% url 'account_login' %}">Log In</a> | New User <a href="{% url 'account_signup'  %}">Signup</a>
+        </p>
+    {% endif %}
+    {% endblock content %}
+</body>
+</html>
